@@ -16,7 +16,7 @@ inputs:
   rabbitmq_password:
     description: "The RabbitMQ password"
     required: true
-  virtual_host:
+  rabbitmq_vhostname:
     description: "The RabbitMQ virtual host"
     required: true
   queue_name:
@@ -43,6 +43,6 @@ runs:
         RABBITMQ_PORT: ${{ inputs.rabbitmq_port }}
         RABBITMQ_USERNAME: ${{ inputs.rabbitmq_username }}
         RABBITMQ_PASSWORD: ${{ inputs.rabbitmq_password }}
-        RABBITMQ_VHOSTNAME: ${{ inputs.virtual_host }} # Pass the virtual host
+        RABBITMQ_VHOSTNAME: ${{ inputs.rabbitmq_vhostname }}
         QUEUE_NAME: ${{ inputs.queue_name }}
         MESSAGE: ${{ inputs.message }}

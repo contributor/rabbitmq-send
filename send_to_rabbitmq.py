@@ -30,7 +30,7 @@ if __name__ == "__main__":
     rabbitmq_port = int(os.getenv('RABBITMQ_PORT'))
     rabbitmq_username = os.getenv('RABBITMQ_USERNAME')
     rabbitmq_password = os.getenv('RABBITMQ_PASSWORD')
-    virtual_host = os.getenv('VIRTUAL_HOST')
+    virtual_host = os.getenv('RABBITMQ_VHOSTNAME')
 
     queue_name = os.getenv('QUEUE_NAME')
     message = os.getenv('MESSAGE')
