@@ -36,7 +36,7 @@ runs:
         echo "Files:"
         ls -la
       shell: bash
-    - run: python send_to_rabbitmq.py
+    - run: python ${{ github.action_path }}/send_to_rabbitmq.py
       shell: bash
       env:
         RABBITMQ_HOST: ${{ inputs.rabbitmq_host }}
