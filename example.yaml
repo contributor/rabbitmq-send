@@ -1,0 +1,22 @@
+name: "Notify RabbitMQ on Commit"
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      
+      - name: Send message to RabbitMQ over AMQPS
+        uses: contributor/rabbitmq-send@v1
+        with:
+          rabbitmq_host: ${{ secrets.RABBITMQ_HOST }}  # Secret for RabbitMQ host
+          rabbitmq_port: 5671  # Default AMQPS port
+          virtual_host: ${{ secrets.RABBITMQ_VIRTUAL_HOST }}  # Secret for RabbitMQ virtual host
+          queue_name: your-queue-name  # Replace with your RabbitMQ queue name
+          message: 'A new commit has been pushed!'  # Customize the message
+          rabbitmq_username: ${{ secrets.RABBITMQ_USERNAME }}  # Secret for RabbitMQ username
+          rabbitmq_password: ${{ secrets.RABBITMQ_PASSWORD }}  # Secret for RabbitMQ password

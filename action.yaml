@@ -1,0 +1,43 @@
+name: "RabbitMQ Secure Notifier"
+description: "A custom action to send a message to RabbitMQ over AMQPS"
+author: "contributor"
+
+inputs:
+  rabbitmq_host:
+    description: "The RabbitMQ host"
+    required: true
+  rabbitmq_port:
+    description: "The RabbitMQ AMQPS port (usually 5671)"
+    required: true
+    default: "5671"
+  rabbitmq_username:
+    description: "The RabbitMQ username"
+    required: true
+  rabbitmq_password:
+    description: "The RabbitMQ password"
+    required: true
+  virtual_host:
+    description: "The RabbitMQ virtual host"
+    required: true
+  queue_name:
+    description: "The name of the RabbitMQ queue"
+    required: true
+  message:
+    description: "The message to send"
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - run: pip install pika certifi
+      shell: bash
+    - run: python send_to_rabbitmq.py
+      shell: bash
+      env:
+        RABBITMQ_HOST: ${{ inputs.rabbitmq_host }}
+        RABBITMQ_PORT: ${{ inputs.rabbitmq_port }}
+        RABBITMQ_USERNAME: ${{ inputs.rabbitmq_username }}
+        RABBITMQ_PASSWORD: ${{ inputs.rabbitmq_password }}
+        VIRTUAL_HOST: ${{ inputs.virtual_host }} # Pass the virtual host
+        QUEUE_NAME: ${{ inputs.queue_name }}
+        MESSAGE: ${{ inputs.message }}
