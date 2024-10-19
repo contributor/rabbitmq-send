@@ -43,6 +43,6 @@ runs:
         RABBITMQ_PORT: ${{ inputs.rabbitmq_port }}
         RABBITMQ_USERNAME: ${{ inputs.rabbitmq_username }}
         RABBITMQ_PASSWORD: ${{ inputs.rabbitmq_password }}
-        VIRTUAL_HOST: ${{ inputs.virtual_host }} # Pass the virtual host
+        RABBITMQ_VHOSTNAME: ${{ inputs.virtual_host }} # Pass the virtual host
         QUEUE_NAME: ${{ inputs.queue_name }}
         MESSAGE: ${{ inputs.message }}
