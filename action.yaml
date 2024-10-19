@@ -31,6 +31,11 @@ runs:
   steps:
     - run: pip install pika certifi
       shell: bash
+    - run: |
+        echo "Current directory: $(pwd)"
+        echo "Files:"
+        ls -la
+      shell: bash
     - run: python send_to_rabbitmq.py
       shell: bash
       env:
